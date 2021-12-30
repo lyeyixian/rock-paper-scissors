@@ -69,3 +69,17 @@ function playRound(playerSelection, computerSelection) {
 
     return tie;
 }
+
+function game() {
+    while (true) {
+        const playerSelection = prompt('Input Rock, Paper or Scissors.');
+
+        if (playerSelection === 'end') {
+            break;
+        }
+
+        const computerSelection = computerPlay();
+
+        console.log(playRound(playerSelection, computerSelection));
+    }
+}
