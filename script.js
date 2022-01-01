@@ -82,15 +82,39 @@ function game() {
     }
 }
 
-const playerScore = document.querySelector('#playerScore');
-const computerScore = document.querySelector('#computerScore');
+
 
 function clickHandler(e) {
     let playerSelection = e.target.innerText;
     let computerSelection = computerPlay();
     let gameResult = playRound(playerSelection, computerSelection);
+
     const result = document.querySelector('#result');
     result.innerText = `Player: ${playerSelection}\nComputer: ${computerSelection}\n${gameResult}`;
+
+    const status = gameResult.split(' ')[1];
+    const playerScore = document.querySelector('#playerScore');
+    const computerScore = document.querySelector('#computerScore');
+
+    if (status === 'Win!') {
+        playerScore.innerText = parseInt(playerScore.textContent) + 1;
+    }
+    
+    if (status === 'Lose!') {
+        computerScore.innerText = parseInt(computerScore.textContent) + 1;
+    }
+
+    if (playerScore.innerText === '5') {
+        result.innerText = 'Player Win!';
+        playerScore.innerText = 0;
+        computerScore.innerText = 0;
+    } 
+
+    if (computerScore.innerText === '5') {
+        result.innerText = 'Player Lose!';
+        playerScore.innerText = 0;
+        computerScore.innerText = 0;
+    }
 }
 
 const buttons = document.querySelectorAll("button");
