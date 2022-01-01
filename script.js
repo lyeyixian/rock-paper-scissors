@@ -27,8 +27,6 @@ function capitalize(str) {
     return uppercase + lowercase;
 }
 
-
-
 function playRound(playerSelection, computerSelection) {
     playerInput = capitalize(playerSelection);
     const win = `You Win! ${playerInput} beats ${computerSelection}`;
@@ -83,3 +81,10 @@ function game() {
         console.log(playRound(playerSelection, computerSelection));
     }
 }
+
+const buttons = document.querySelectorAll("button");
+buttons.forEach(button => {
+    button.addEventListener('click', (e) => {
+        console.log(playRound(e.target.innerText, computerPlay()));
+    });
+});
