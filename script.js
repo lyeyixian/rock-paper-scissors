@@ -82,9 +82,20 @@ function game() {
     }
 }
 
+const playerScore = document.querySelector('#playerScore');
+const computerScore = document.querySelector('#computerScore');
+
+function clickHandler(e) {
+    let playerSelection = e.target.innerText;
+    let computerSelection = computerPlay();
+    let gameResult = playRound(playerSelection, computerSelection);
+    const result = document.querySelector('#result');
+    result.innerText = `Player: ${playerSelection}\nComputer: ${computerSelection}\n${gameResult}`;
+}
+
 const buttons = document.querySelectorAll("button");
 buttons.forEach(button => {
-    button.addEventListener('click', (e) => {
-        console.log(playRound(e.target.innerText, computerPlay()));
-    });
+    button.addEventListener('click', clickHandler);
 });
+
+
